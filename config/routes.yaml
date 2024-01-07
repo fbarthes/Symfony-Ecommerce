@@ -1,0 +1,29 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+app_logout:
+    path: /logout
+    methods: GET
+    
+landing_page:
+    path: /landing
+    controller: App\Controller\PagesController::index
+    methods: ['GET']
+
+
+fallback:
+    path: /{req}
+    defaults: 
+        _controller: App\Controller\DefaultController::index
+    requirements:
+        req: ".*"
+
+admin_fallback:
+    path: /admin/{reqAdmin}
+    defaults: 
+        _controller: App\Controller\DefaultController::indexAdmin
+    requirements:
+        reqAdmin: ".*"

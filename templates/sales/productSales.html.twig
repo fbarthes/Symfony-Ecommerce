@@ -1,0 +1,57 @@
+{% extends 'adminBase.html.twig' %}
+
+{% block title %}Sales!
+{% endblock %}
+
+{% block main %}
+	<br>
+	<h2>
+		<a href="{{ path('app_admin_dashboard') }}">Dashboard</a>
+		>
+		<a href="{{ path('app_admin_listsales') }}">Promotions</a>
+		>
+		<a href="">Appliquer</a>
+	</h2>
+	<br>
+
+	<table class="table table-light table-striped">
+		<thead>
+			<form method='POST'>
+				<tr>
+					<th>Artiste</th>
+					<th>Album</th>
+					<th>Remise appliquée</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<div></div>
+		</thead>
+		<tbody>
+			{% for item in products %}
+
+
+				<tr>
+					<td>{{item.name}}</td>
+					<td>{{item.description}}</td>
+					{% if item.ProductSales is same as(NULL) %}
+						<td>Pas de promotion</td>
+					{% else %}
+						<td>{{item.ProductSales.AmountPercentage}}%</td>
+					{% endif %}
+
+					<td>
+						<div>
+							<input type="checkbox" id="Product{{ item.id }}" name="Product{{ item.id }}" value="{{ item.id }}"/>
+							<label for="Product{{ item.id }}">{{ labelname}}</label>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div>
+		<button class='btn btn-primary' type="submit" name="submit">Appliquer</button>
+	</div>
+
+
+{% endblock %}
